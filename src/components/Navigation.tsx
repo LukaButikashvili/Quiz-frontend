@@ -8,12 +8,13 @@ import {
   CloudUpload as UploadIcon,
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCallback } from "react";
 
 export default function Navigation() {
   const { id } = useParams();
+  const router = useRouter();
   const {
     quizTitle,
     isPublished,
@@ -87,7 +88,12 @@ export default function Navigation() {
           <Button
             variant="contained"
             startIcon={<UploadIcon />}
-            onClick={publishQuiz}
+            onClick={async () => {
+              const success = await publishQuiz();
+              if (success) {
+                router.push("/");
+              }
+            }}
             disabled={isPublishing || isPublished}
           >
             {isPublishing ? "Publishing..." : "Publish"}

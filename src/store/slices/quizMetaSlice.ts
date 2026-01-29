@@ -15,7 +15,8 @@ export interface QuizMetaSlice {
   fetchQuiz: (id: string) => Promise<void>;
   createQuiz: () => Promise<void>;
   updateQuiz: (id: string) => Promise<void>;
-  publishQuiz: () => Promise<void>;
+  publishQuiz: () => Promise<boolean>;
+  resetStore: () => void;
 }
 
 export const createQuizMetaSlice: StateCreator<
@@ -75,16 +76,34 @@ export const createQuizMetaSlice: StateCreator<
 
   publishQuiz: async () => {
     const { quizId } = get();
-    if (!quizId) return;
+    if (!quizId) return false;
 
     set({ isPublishing: true });
     try {
       const result = await publishPost(quizId);
       if (result) {
         set({ isPublished: true });
+        const queryClient = getQueryClient();
+        await queryClient.invalidateQueries({
+          queryKey: [QuizQueryKeys.quizzes],
+        });
+        return true;
       }
+      return false;
     } finally {
       set({ isPublishing: false });
     }
+  },
+
+  resetStore: () => {
+    set({
+      quizId: null,
+      quizTitle: "",
+      isPublished: false,
+      isSaving: false,
+      isPublishing: false,
+      blocks: [],
+      selectedBlock: null,
+    });
   },
 });

@@ -19,6 +19,7 @@ export default function QuizEditor({ id }: { id?: string }) {
     handleDragEnd,
     saveBlock,
     fetchQuiz,
+    resetStore,
   } = useQuizStore();
 
   useEffect(() => {
@@ -26,6 +27,12 @@ export default function QuizEditor({ id }: { id?: string }) {
       fetchQuiz(id);
     }
   }, [fetchQuiz, id]);
+
+  useEffect(() => {
+    return () => {
+      resetStore();
+    };
+  }, [resetStore]);
 
   const disabledBlocks = getDisabledBlocks();
 

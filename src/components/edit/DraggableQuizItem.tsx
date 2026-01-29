@@ -23,19 +23,22 @@ export default function DraggableQuizItem({
   isDraggable = true,
   onDelete,
 }: DraggableQuizItemProps) {
-  const content = (provided: DraggableProvided, snapshot: DraggableStateSnapshot) => (
+  const content = (
+    provided: DraggableProvided,
+    snapshot: DraggableStateSnapshot,
+  ) => (
     <div
       ref={provided.innerRef}
       {...provided.draggableProps}
       className={cn(
         "relative transition-all duration-150",
-        snapshot.isDragging ? "opacity-90 shadow-2xl z-50" : "opacity-100"
+        snapshot.isDragging ? "opacity-90 shadow-2xl z-50" : "opacity-100",
       )}
     >
       <div
         className={cn(
           "group relative bg-transparent",
-          !isDraggable && "opacity-90"
+          !isDraggable && "opacity-90",
         )}
       >
         {/* Controls Overlay */}
@@ -67,7 +70,7 @@ export default function DraggableQuizItem({
                 e.stopPropagation();
                 onDelete(id);
               }}
-              className="p-1.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-red-300 hover:bg-red-50 transition-colors"
+              className="cursor-pointer p-1.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-red-300 hover:bg-red-50 transition-colors"
             >
               <DeleteIcon className="w-4 h-4 text-gray-400 hover:text-red-500" />
             </button>
@@ -79,11 +82,7 @@ export default function DraggableQuizItem({
   );
 
   return (
-    <Draggable
-      draggableId={id}
-      index={index}
-      isDragDisabled={!isDraggable}
-    >
+    <Draggable draggableId={id} index={index} isDragDisabled={!isDraggable}>
       {content}
     </Draggable>
   );

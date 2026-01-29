@@ -34,7 +34,7 @@ function StaticItemWrapper({
                 e.stopPropagation();
                 onDelete(id);
               }}
-              className="p-1.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-red-300 hover:bg-red-50 transition-colors"
+              className="cursor-pointer p-1.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-red-300 hover:bg-red-50 transition-colors"
             >
               <DeleteIcon className="w-4 h-4 text-gray-400 hover:text-red-500" />
             </button>
