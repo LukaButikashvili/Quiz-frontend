@@ -40,12 +40,12 @@ function Checkbox({ value, option, handleSelect }: CheckboxProps) {
         control={
           <MuiCheckbox
             checked={isChecked}
-            onChange={() => handleSelect(option.id)}
             sx={{
               color: "grey.400",
               "&.Mui-checked": {
                 color: "success.main",
               },
+              pointerEvents: "none",
             }}
           />
         }
@@ -53,6 +53,7 @@ function Checkbox({ value, option, handleSelect }: CheckboxProps) {
         sx={{
           m: 0,
           width: "100%",
+          pointerEvents: "none",
           "& .MuiFormControlLabel-label": {
             fontWeight: 500,
             color: isChecked ? "grey.900" : "grey.700",

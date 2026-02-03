@@ -17,6 +17,12 @@ export const BUILDING_BLOCKS: BuildingBlockConfig[] = [
     icon: QuestionIcon,
   },
   {
+    title: "Button",
+    description: "Clickable button",
+    variant: BlockType.Button,
+    icon: QuestionIcon,
+  },
+  {
     title: "Footer",
     description: "Bottom section content",
     variant: BlockType.Footer,

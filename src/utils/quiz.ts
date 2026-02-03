@@ -1,11 +1,9 @@
-import { HEADER_DEFAULT_STATE, FOOTER_DEFAULT_STATE } from "@/config/constants";
+import { HEADER_DEFAULT_STATE, FOOTER_DEFAULT_STATE } from "@/config";
 import { BlockType, QuestionType, type QuizItem } from "@/types";
 
-// Generate unique ID
 export const generateId = () =>
   `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
-// Recalculate orders after reordering
 export const recalculateOrders = (items: QuizItem[]): QuizItem[] => {
   let orderCounter = 2;
   return items.map((item) => {
@@ -21,9 +19,8 @@ export const recalculateOrders = (items: QuizItem[]): QuizItem[] => {
   });
 };
 
-// Create new item based on block type
 export const createNewItem = (
-  blockType: string,
+  blockType: BlockType,
   currentQuizLength: number,
 ): QuizItem | null => {
   const id = generateId();
@@ -59,12 +56,10 @@ export const createNewItem = (
   }
 };
 
-// Helper to check if item is draggable (Header and Footer are not)
 export const isItemDraggable = (item: QuizItem) => {
   return item.type !== BlockType.Header && item.type !== BlockType.Footer;
 };
 
-// Type guards for value handling
 export const getStringValue = (
   value: string | string[] | undefined,
 ): string => {

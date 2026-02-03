@@ -10,7 +10,7 @@ import {
 import DraggableQuizItem from "./DraggableQuizItem";
 import EmptyCanvasPlaceholder from "./EmptyCanvasPlaceholder";
 import { BlockType, QuestionType, type QuizItem } from "@/types";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils";
 
 interface QuizCanvasProps {
   quiz: QuizItem[];

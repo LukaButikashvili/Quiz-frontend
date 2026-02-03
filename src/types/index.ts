@@ -3,6 +3,7 @@ import type { FC, SVGProps } from "react";
 export enum BlockType {
   Header = "header",
   Question = "question",
+  Button = "button",
   Footer = "footer",
 }
 

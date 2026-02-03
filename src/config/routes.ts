@@ -1,4 +1,4 @@
 export enum RoutePaths {
-  edit = "/quizzes/edit",
-  view = "/quizzes/view",
+  edit = "/quiz/edit",
+  view = "/quiz",
 }

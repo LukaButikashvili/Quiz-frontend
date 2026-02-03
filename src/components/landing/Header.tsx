@@ -1,3 +1,4 @@
+import { RoutePaths } from "@/config";
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import Link from "next/link";
@@ -14,7 +15,7 @@ function Header() {
             <span className="text-white font-bold text-lg">Q</span>
           </Link>
         </div>
-        <Link href={"/quizzes/edit"}>
+        <Link href={RoutePaths.edit}>
           <Button variant="contained" startIcon={<Add />}>
             Create Quiz
           </Button>

@@ -1,18 +1,12 @@
 "use client";
 
-import { Quiz } from "@/types";
-import QuizCard from "./QuizCard";
-import { getAllQuizzes } from "@/api/quizzes";
-import { useQuery } from "@tanstack/react-query";
-import { QuizQueryKeys } from "@/config/queryKeys";
+import { QuizCard } from "@/components/shared";
+import { useQuizzes } from "@/hooks";
 
 function QuizList() {
-  const { data } = useQuery<Quiz[]>({
-    queryKey: [QuizQueryKeys.quizzes],
-    queryFn: getAllQuizzes,
-  });
+  const { data: quizzes } = useQuizzes();
 
-  if (!data || data.length === 0) {
+  if (!quizzes || quizzes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 px-4">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -28,7 +22,7 @@ function QuizList() {
 
   return (
     <div className="flex flex-wrap gap-6">
-      {data?.map((quiz) => (
+      {quizzes.map((quiz) => (
         <QuizCard
           key={quiz.id}
           id={quiz.id}

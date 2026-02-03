@@ -1,5 +1,5 @@
 import { DragHandleIcon, CheckCircleIcon } from "@/assets/icons";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils";
 import { BlockType } from "@/types";
 
 const variantStyles: Record<
@@ -20,6 +20,11 @@ const variantStyles: Record<
     color: "text-gray-500",
     bg: "bg-gray-100",
     border: "before:bg-gray-500",
+  },
+  [BlockType.Button]: {
+    color: "text-blue-500",
+    bg: "bg-blue-50",
+    border: "before:bg-blue-500",
   },
 };
 

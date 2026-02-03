@@ -2,14 +2,19 @@
 
 import { DragDropContext } from "@hello-pangea/dnd";
 import { Sidebar } from "@/components/ui";
-import { isItemDraggable } from "@/utils/quiz";
+import { isItemDraggable } from "@/utils";
 import { useQuizStore } from "@/store";
 import QuizCanvas from "./QuizCanvas";
 import BuildingBlocksSidebar from "./BuildingBlockSidebar";
 import QuestionBlockEditor from "./QuestionBlockEditor";
 import { useEffect } from "react";
+import type { Quiz } from "@/types";
 
-export default function QuizEditor({ id }: { id?: string }) {
+interface QuizEditorProps {
+  initialQuiz?: Quiz | null;
+}
+
+export default function QuizEditor({ initialQuiz }: QuizEditorProps) {
   const {
     blocks,
     selectedBlock,
@@ -18,15 +23,15 @@ export default function QuizEditor({ id }: { id?: string }) {
     deleteBlock,
     handleDragEnd,
     saveBlock,
-    fetchQuiz,
+    hydrateFromQuiz,
     resetStore,
   } = useQuizStore();
 
   useEffect(() => {
-    if (id) {
-      fetchQuiz(id);
+    if (initialQuiz) {
+      hydrateFromQuiz(initialQuiz);
     }
-  }, [fetchQuiz, id]);
+  }, [initialQuiz, hydrateFromQuiz]);
 
   useEffect(() => {
     return () => {

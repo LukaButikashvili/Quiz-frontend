@@ -6,7 +6,7 @@ import {
   type DraggableStateSnapshot,
 } from "@hello-pangea/dnd";
 import { DragHandleIcon, DeleteIcon, LockIcon } from "@/assets/icons";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils";
 
 interface DraggableQuizItemProps {
   id: string;

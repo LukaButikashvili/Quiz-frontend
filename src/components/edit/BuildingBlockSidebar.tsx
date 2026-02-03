@@ -1,7 +1,7 @@
 "use client";
 
 import { Droppable, Draggable } from "@hello-pangea/dnd";
-import { BUILDING_BLOCKS } from "@/config/constants";
+import { BUILDING_BLOCKS } from "@/config";
 import { Sidebar } from "@/components/ui";
 import BlockItem from "./BlockItem";
 

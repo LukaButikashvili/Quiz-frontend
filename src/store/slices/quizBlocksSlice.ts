@@ -1,6 +1,6 @@
 import type { StateCreator } from "zustand";
 import type { DropResult } from "@hello-pangea/dnd";
-import { recalculateOrders, createNewItem } from "@/utils/quiz";
+import { recalculateOrders, createNewItem } from "@/utils";
 import { BlockType, type QuizItem } from "@/types";
 import type { QuizMetaSlice } from "./quizMetaSlice";
 
@@ -10,7 +10,7 @@ export interface QuizBlocksSlice {
 
   setBlocks: (blocks: QuizItem[]) => void;
   selectBlock: (item: QuizItem | null) => void;
-  addBlock: (blockType: string, destinationIndex?: number) => void;
+  addBlock: (blockType: BlockType, destinationIndex?: number) => void;
   deleteBlock: (id: string) => void;
   reorderBlocks: (sourceIndex: number, destinationIndex: number) => void;
   handleDragEnd: (result: DropResult) => void;
@@ -129,7 +129,12 @@ export const createQuizBlocksSlice: StateCreator<
       destination.droppableId === "canvas"
     ) {
       const blockType = draggableId.replace("sidebar-", "");
-      addBlock(blockType, destination.index);
+      const validBlockTypes = Object.values(BlockType);
+      if (!validBlockTypes.includes(blockType as BlockType)) {
+        console.error(`Invalid block type: ${blockType}`);
+        return;
+      }
+      addBlock(blockType as BlockType, destination.index);
       return;
     }
 

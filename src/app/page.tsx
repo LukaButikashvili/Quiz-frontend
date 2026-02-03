@@ -1,9 +1,9 @@
-import { getQueryClient } from "@/lib/getQueryClient";
-import { getAllQuizzes } from "@/api/quizzes";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/lib";
+import { getAllQuizzes } from "@/api";
+import { QuizQueryKeys } from "@/config";
 import Header from "@/components/landing/Header";
 import QuizList from "@/components/landing/QuizList";
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { QuizQueryKeys } from "@/config/queryKeys";
 
 export default async function Home() {
   const queryClient = getQueryClient();
@@ -14,13 +14,13 @@ export default async function Home() {
   });
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="flex flex-col gap-6">
-        <Header />
-        <div className="p-10 m-auto max-w-[1280px]">
+    <div className="flex flex-col gap-6">
+      <Header />
+      <div className="p-10 m-auto max-w-[1280px]">
+        <HydrationBoundary state={dehydrate(queryClient)}>
           <QuizList />
-        </div>
+        </HydrationBoundary>
       </div>
-    </HydrationBoundary>
+    </div>
   );
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import { UploadIcon } from "@/assets/icons";
 
 export default function EmptyCanvasPlaceholder() {

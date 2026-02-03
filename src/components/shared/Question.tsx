@@ -3,7 +3,7 @@
 import { Checkbox, RadioInput, TextInput } from "@/components/ui";
 import { QuestionCircleIcon } from "@/assets/icons";
 import { QuestionType } from "@/types";
-import { getStringValue, getArrayValue } from "@/utils/quiz";
+import { getStringValue, getArrayValue } from "@/utils";
 
 interface QuestionOption {
   id?: string;
@@ -19,7 +19,7 @@ interface QuestionProps {
   options?: QuestionOption[];
   value?: string | string[];
   onChange: (value: string | string[]) => void;
-  onClick: (value: string) => void;
+  onClick?: (value: string) => void;
 }
 
 function Question({
@@ -56,7 +56,7 @@ function Question({
     <div
       className="p-6 bg-white rounded-2xl border-2 border-indigo-100 shadow-sm hover:border-indigo-200 transition-colors cursor-pointer"
       onClick={() => {
-        !isViewPage && onClick(id);
+        !isViewPage && onClick && onClick(id);
       }}
     >
       <div className="flex items-center gap-2 mb-3">
